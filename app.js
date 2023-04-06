@@ -3,49 +3,49 @@ const url = "https://2u-data-curriculum-team.s3.amazonaws.com/dataviz-classroom/
 
 // Fetch the JSON data and console log it
 d3.json(url).then(function(data) {
-    console.log(data);
+  console.log(data);
 });
 
-//Initiate the dashboard at start up
+// Initialize the dashboard at start up 
 function init() {
 
-    //Use D3 to select the dropdown menu
-    let dropDownMenu = d3.select("#selDataset");
+    // Use D3 to select the dropdown menu
+    let dropdownMenu = d3.select("#selDataset");
 
-    //Use D3 to get sample names and populate the dropdown selector
+    // Use D3 to get sample names and populate the drop-down selector
     d3.json(url).then((data) => {
-
-        //Set a variable for the sample names
+        
+        // Set a variable for the sample names
         let names = data.names;
 
-        //Add samples to dropdown menu
+        // Add  samples to dropdown menu
         names.forEach((id) => {
 
-            //Log the value of ID for each iteration of the loop
+            // Log the value of id for each iteration of the loop
             console.log(id);
 
-            dropDownMenu
-            .append("option")
+            dropdownMenu.append("option")
             .text(id)
             .property("value",id);
         });
 
-        //Set the first sample from the list
-        let sampleOne = names[0];
+        // Set the first sample from the list
+        let sample_one = names[0];
 
-        //Log the value of sampleOne
-        console.log(sampleOne);
+        // Log the value of sample_one
+        console.log(sample_one);
 
-        //Build the initial plots
-        buildMetaData(sampleOne);
-        buildBarChart(sampleOne);
-        buildBubbleChart(sampleOne);
-        buildGaugeChart(sampleOne);
+        // Build the initial plots
+        buildMetadata(sample_one);
+        buildBarChart(sample_one);
+        buildBubbleChart(sample_one);
+        buildGaugeChart(sample_one);
+
     });
 };
 
 // Function that populates metadata info
-function buildMetaData(sample) {
+function buildMetadata(sample) {
 
     // Use D3 to retrieve all of the data
     d3.json(url).then((data) => {
